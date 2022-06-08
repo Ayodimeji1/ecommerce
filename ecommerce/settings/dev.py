@@ -1,4 +1,5 @@
 from .base import *
+import dj_database_url
 
 
 DATABASES = {
@@ -7,11 +8,10 @@ DATABASES = {
     )
 }
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure--jvr+ki2x=jaeem!$qdi7ovsumqxzixl)m)yy3ci2qgo93$9wi'
 
-PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY')
-PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY')
+PAYSTACK_SECRET_KEY = 'sk_test_05e65d231a09f6b2d86495fa3e526d807287ccf8'
+PAYSTACK_PUBLIC_KEY = 'pk_test_abf9ebd652514f64bfb004be60e673c92224aa56'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!

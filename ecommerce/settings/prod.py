@@ -9,7 +9,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['eshopproject.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # AWS S3 CONFIG
 
