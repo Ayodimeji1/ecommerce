@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'storages',
     'shop',
     'product',
+    'cart',
+    'payment',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +74,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'product.context_processors.menu_categories',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -85,6 +89,11 @@ DATABASES = {
         default="postgres://postgres:$$ayodimeji22@localhost:5432/ecommerce", conn_max_age=600
     )
 }
+
+SESSION_COOKIE_AGE = 86400
+
+CART_SESSION_ID = 'cart'
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -144,10 +153,10 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-STATIC_URL = 'static/'
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-MEDIA_URL = 'media/'
-
-MEDIA_ROOT = BASE_DIR / 'media'
+# STATIC_URL = 'static/'
+#
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+#
+# MEDIA_URL = 'media/'
+#
+# MEDIA_ROOT = BASE_DIR / 'media'

@@ -1,0 +1,45 @@
+{% extends 'shop/base.html' %}
+
+<!--{% load widget_tweaks %}-->
+
+{% block title %} checkout | {% endblock %}
+
+{% block content %}
+ <div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <div class="card" style="width: 30rem; padding: 1rem 3rem 1rem 3rem; border-radius: 1rem;">
+                 <div class="card-body">
+                     <div class="form-group"><h5>Total: NGN{{ cart.get_total_cost }}</h5></div>
+                    <form action="." method="POST">
+                        {% csrf_token %}
+<!--                        <div class="form-group">-->
+<!--                            <label>full Name </label>-->
+<!--                            {{ payment_form.full_name }}-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label>email </label>-->
+<!--                            {{ payment_form.email }}-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label>phone</label>-->
+<!--                            {{ payment_form.phone }}-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label>address</label>-->
+<!--                            {{ payment_form.address }}-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label>amount</label>-->
+<!--                            {{ payment_form.amount }}-->
+<!--                        </div>-->
+
+                        <button type="submit" value="submit" class="btn btn-primary">Pay</button>
+                    </form>
+                 </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+{% endblock %}

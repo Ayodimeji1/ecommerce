@@ -2,6 +2,7 @@
 
 {% block title %} {{ product.name }} | {% endblock title %}
 
+
 {% block content %}
 <div class="container">
         <!-- Product Detail -->
@@ -47,26 +48,28 @@
 <!--                                    Color-->
 <!--                                </div>-->
 <!--                            </div>-->
+                            <form method="post" action=".">
+                            {% csrf_token %}
+                                <div class="flex-w flex-r-m p-b-10">
+                                    <div class="size-204 flex-w flex-m respon6-next">
+                                        <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                                <i class="fs-16 zmdi zmdi-minus"></i>
+                                            </div>
 
-                            <div class="flex-w flex-r-m p-b-10">
-                                <div class="size-204 flex-w flex-m respon6-next">
-                                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1" min="1">
+
+                                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                                <i class="fs-16 zmdi zmdi-plus"></i>
+                                            </div>
                                         </div>
 
-                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-plus"></i>
-                                        </div>
+                                        <button id="stopreload" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                            Add to cart
+                                        </button>
                                     </div>
-
-                                    <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                        Add to cart
-                                    </button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
 
                         <!--  -->
@@ -95,5 +98,66 @@
         </div>
     </section>
 </div>
+<script>
+
+    /*
+
+    On focus out on input nickname,
+
+    call AJAX get request to check if the nickName
+
+    already exists or not.
+
+    */
+
+    $("#stopreload").focusout(function (e) {
+
+        e.preventDefault();
+
+        // get the nickname
+
+        var nick_name = $(this).val();
+
+        // GET AJAX request
+
+        $.ajax({
+
+            type: 'GET',
+
+            url: "{% url 'validate_nickname' %}",
+
+            data: {"nick_name": nick_name},
+
+            success: function (response) {
+
+                // if not valid user, alert the user
+
+                if(!response["valid"]){
+
+                    alert("You cannot create a friend with same nick name");
+
+                    var nickName = $("#id_nick_name");
+
+                    nickName.val("")
+
+                    nickName.focus()
+
+                }
+
+            },
+
+            error: function (response) {
+
+                console.log(response)
+
+            }
+
+        })
+
+    })
+
+</script>
+
+{% endblock javascript %}
 {% endblock content %}
 
