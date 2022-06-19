@@ -40,14 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_htmx',
     'imagekit',
     'django_extensions',
     'storages',
+    'widget_tweaks',
     'shop',
     'product',
     'cart',
     'payment',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -75,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'product.context_processors.menu_categories',
                 'cart.context_processors.cart',
+                'django.template.context_processors.request'
             ],
         },
     },
@@ -93,6 +96,43 @@ DATABASES = {
 SESSION_COOKIE_AGE = 86400
 
 CART_SESSION_ID = 'cart'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# CSRF_COOKIE_SAMESITE: 'None'
+#
+# CORS_ALLOW_CREDENTIALS = True
+#
+# SESSION_COOKIE_SAMESITE = 'None'
+
+# SESSION_COOKIE_DOMAIN = "localhost"
+# SESSION_COOKIE_SECURE= False #default use just to override your prod setting
+# SESSION_COOKIE_DOMAIN= None  #default  use just to override your prod setting
+
+# SESSION_COOKIE_SECURE = True
+#
+# DCS_SESSION_COOKIE_SAMESITE = 'None'
+#
+# DCS_SESSION_COOKIE_SAMESITE_FORCE_ALL = True
+
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SAMESITE = 'None'
+# SESSION_COOKIE_SAMESITE = 'None'
+
+SESSION_COOKIE_HTTPONLY = True
+# SESSION_COOKIE_SECURE = False
+#
+#
+# # CORS_ORIGIN_ALLOW_ALL = False
+# # CORS_ALLOW_CREDENTIALS = True
+# CORS_ORIGIN_WHITELIST = [
+#     'https://localhost:8000',
+#     'https://127.0.0.1:8000'
+# ]
+
+# SESSION_COOKIE_DOMAIN=".proj.com"
+
 
 # DATABASES = {
 #     'default': {
@@ -152,11 +192,12 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# STATIC_URL = 'static/'
-#
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-#
-# MEDIA_URL = 'media/'
-#
-# MEDIA_ROOT = BASE_DIR / 'media'
+CORS_REPLACE_HTTPS_REFERER      = False
+HOST_SCHEME                     = "http://"
+SECURE_PROXY_SSL_HEADER         = None
+SECURE_SSL_REDIRECT             = False
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
+SECURE_HSTS_SECONDS             = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+SECURE_FRAME_DENY               = False

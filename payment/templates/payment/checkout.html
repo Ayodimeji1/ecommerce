@@ -1,45 +1,73 @@
 {% extends 'shop/base.html' %}
 
-<!--{% load widget_tweaks %}-->
+{% load widget_tweaks %}
 
-{% block title %} checkout | {% endblock %}
+{% block title %} Checkout | {% endblock %}
 
 {% block content %}
  <div class="container h-100">
     <div class="row align-items-center h-100">
-        <div class="col-6 mx-auto">
-            <div class="card" style="width: 30rem; padding: 1rem 3rem 1rem 3rem; border-radius: 1rem;">
+        <div class="col-6 mx-auto" style="text-align: center; ">
+            <div class="card" style="width: 30rem; padding: 1rem 3rem 1rem 3rem; border-radius: 1rem; font-family: Poppins;">
                  <div class="card-body">
-                     <div class="form-group"><h5>Total: NGN{{ cart.get_total_cost }}</h5></div>
-                    <form action="." method="POST">
-                        {% csrf_token %}
-<!--                        <div class="form-group">-->
-<!--                            <label>full Name </label>-->
-<!--                            {{ payment_form.full_name }}-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>email </label>-->
-<!--                            {{ payment_form.email }}-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>phone</label>-->
-<!--                            {{ payment_form.phone }}-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>address</label>-->
-<!--                            {{ payment_form.address }}-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>amount</label>-->
-<!--                            {{ payment_form.amount }}-->
-<!--                        </div>-->
+                    <div class="form-group"><h5>Total: NGN{{ cart.get_total_cost }}</h5></div>
+                    <script src="https://checkout.flutterwave.com/v3.js"></script>
 
-                        <button type="submit" value="submit" class="btn btn-primary">Pay</button>
+                    <form action="." method="POST" id="paymentForm">
+                        {% csrf_token %}
+
+                            <div class="form-group">
+                                {% render_field payment_form.full_name class="form-control" placeholder="Full Name" type="text" id="full_name" %}
+                            </div>
+
+                            <div class="form-group">
+                            {% render_field payment_form.email type="text" class="form-control" placeholder="email" id="email-address" %}
+                            </div>
+
+                            <div class="form-group">
+                            {% render_field payment_form.phone type="text" class="form-control" placeholder="phone" id="phone"%}
+                            </div>
+
+                            <div class="form-group">
+                            {% render_field payment_form.address type="text" class="form-control" placeholder="address" %}
+                            </div>
+
+                            <div class="form-group">
+                            {% render_field payment_form.amount type="tel" class="form-control"  id="amount" placeholder="enter total" %}
+                            </div>
+                            <button value="submit" class="btn btn-primary" type="submit" onclick="makePayment()">Pay</button>
                     </form>
                  </div>
             </div>
         </div>
     </div>
  </div>
+
+<script>
+    function makePayment() {
+      FlutterwaveCheckout({
+        public_key: "FLWPUBK_TEST-SANDBOXDEMOKEY-X",
+        tx_ref: "txref",
+        amount: document.getElementById("amount").value,
+        currency: "NGN",
+        payment_options: "card, ussd",
+        redirect_url: "http://127.0.0.1:8000",
+        meta: {
+          consumer_id: 23,
+          consumer_mac: "92a3-912ba-1192a",
+        },
+        customer: {
+          email: document.getElementById("email-address").value,
+          phone_number: document.getElementById("phone").value,
+          name: document.getElementById("full_name").value,
+        },
+        customizations: {
+          title: "The 1Store",
+          description: "Payment for {{ item.product.name }}",
+          logo: "media/images/icons/1store1.png",
+        },
+      });
+    }
+</script>
 
 {% endblock %}

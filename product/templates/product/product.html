@@ -1,10 +1,22 @@
 {% extends 'shop/base.html' %}
 
-{% block title %} {{ product.name }} | {% endblock title %}
+{% block title %} {{ product.name }}{% endblock title %}
 
 
 {% block content %}
 <div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+<!--			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">-->
+<!--				Home-->
+<!--				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>-->
+<!--			</a>-->
+
+<!--			<span class="stext-109 cl4">-->
+<!--				Shoping Cart-->
+<!--			</span>-->
+    </div>
+</div>
+
         <!-- Product Detail -->
     <section class="sec-product-detail bg0 p-t-65 p-b-60">
         <div class="container">
@@ -40,15 +52,16 @@
                             {{ product.description }}
                         </p>
 
-                        <!--  -->
+
                         <div class="p-t-33">
+<!--                            {% include 'product/partials/addcart.html' %}-->
 
 <!--                            <div class="flex-w flex-r-m p-b-10">-->
 <!--                                <div class="size-203 flex-c-m respon6">-->
 <!--                                    Color-->
 <!--                                </div>-->
 <!--                            </div>-->
-                            <form method="post" action=".">
+                            <form action="." method="POST">
                             {% csrf_token %}
                                 <div class="flex-w flex-r-m p-b-10">
                                     <div class="size-204 flex-w flex-m respon6-next">
@@ -64,13 +77,17 @@
                                             </div>
                                         </div>
 
-                                        <button id="stopreload" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                        <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
                                             Add to cart
                                         </button>
                                     </div>
                                 </div>
                             </form>
+
+
                         </div>
+
+
 
                         <!--  -->
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
@@ -97,67 +114,7 @@
             </div>
         </div>
     </section>
-</div>
-<script>
 
-    /*
 
-    On focus out on input nickname,
-
-    call AJAX get request to check if the nickName
-
-    already exists or not.
-
-    */
-
-    $("#stopreload").focusout(function (e) {
-
-        e.preventDefault();
-
-        // get the nickname
-
-        var nick_name = $(this).val();
-
-        // GET AJAX request
-
-        $.ajax({
-
-            type: 'GET',
-
-            url: "{% url 'validate_nickname' %}",
-
-            data: {"nick_name": nick_name},
-
-            success: function (response) {
-
-                // if not valid user, alert the user
-
-                if(!response["valid"]){
-
-                    alert("You cannot create a friend with same nick name");
-
-                    var nickName = $("#id_nick_name");
-
-                    nickName.val("")
-
-                    nickName.focus()
-
-                }
-
-            },
-
-            error: function (response) {
-
-                console.log(response)
-
-            }
-
-        })
-
-    })
-
-</script>
-
-{% endblock javascript %}
 {% endblock content %}
 

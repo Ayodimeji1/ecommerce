@@ -4,28 +4,35 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from cart.cart import Cart
 from ecommerce.settings import dev
+from . import forms
 from .forms import CheckoutForm
 
 from .models import Payment
 # Create your views here
 
 
-def checkout(request: HttpRequest) -> HttpResponse:
+def checkout(request):
     cart = Cart(request)
+
     if request.method == 'POST':
-        payment_form = CheckoutForm(request.POST)
+        payment_form = forms.CheckoutForm(request.POST)
         if payment_form.is_valid():
-            payment = payment_form.save()
+            payment_form.save()
 
             cart.clear()
 
-            return render(request, 'payment/make_payment.html',
-                          {'payment': payment, 'paystack_public_key': dev.PAYSTACK_PUBLIC_KEY})
+            return redirect('index')
+
+            # return render(request, 'payment/checkout.html',
+            #               {'payment': payment, 'FLUTTERWAVE_PUBLIC_KEY': dev.FLUTTERWAVE_PUBLIC_KEY})
+
+
 
     else:
-        payment_form = CheckoutForm()
+        payment_form = forms.CheckoutForm()
 
     return render(request, 'payment/checkout.html', {'payment_form': payment_form})
+
 
 
 # def verify_payment(request: HttpRequest, ref: str) -> HttpResponse:
