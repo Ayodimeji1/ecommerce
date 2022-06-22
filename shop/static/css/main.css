@@ -183,7 +183,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   opacity: 1;
   background-color: #717fe0;
 }
-
 @media (max-width: 575px) {
   .btn-back-to-top {
     bottom: 0px;

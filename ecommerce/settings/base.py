@@ -97,60 +97,8 @@ SESSION_COOKIE_AGE = 86400
 
 CART_SESSION_ID = 'cart'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-# CSRF_COOKIE_SAMESITE: 'None'
-#
-# CORS_ALLOW_CREDENTIALS = True
-#
-# SESSION_COOKIE_SAMESITE = 'None'
-
-# SESSION_COOKIE_DOMAIN = "localhost"
-# SESSION_COOKIE_SECURE= False #default use just to override your prod setting
-# SESSION_COOKIE_DOMAIN= None  #default  use just to override your prod setting
-
-# SESSION_COOKIE_SECURE = True
-#
-# DCS_SESSION_COOKIE_SAMESITE = 'None'
-#
-# DCS_SESSION_COOKIE_SAMESITE_FORCE_ALL = True
-
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SAMESITE = 'None'
-# SESSION_COOKIE_SAMESITE = 'None'
 
 SESSION_COOKIE_HTTPONLY = True
-# SESSION_COOKIE_SECURE = False
-#
-#
-# # CORS_ORIGIN_ALLOW_ALL = False
-# # CORS_ALLOW_CREDENTIALS = True
-# CORS_ORIGIN_WHITELIST = [
-#     'https://localhost:8000',
-#     'https://127.0.0.1:8000'
-# ]
-
-# SESSION_COOKIE_DOMAIN=".proj.com"
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'ecommerce',
-#         'USER': 'postgres',
-#         'PASSWORD': '$$ayodimeji22',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 # Password validation

@@ -5,44 +5,79 @@
 {% block title %} Checkout | {% endblock %}
 
 {% block content %}
- <div class="container h-100">
-    <div class="row align-items-center h-100">
-        <div class="col-6 mx-auto" style="text-align: center; ">
-            <div class="card" style="width: 30rem; padding: 1rem 3rem 1rem 3rem; border-radius: 1rem; font-family: Poppins;">
+<!--&lt;!&ndash; breadcrumb &ndash;&gt;-->
+<!--	<div class="container">-->
+<!--		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">-->
+<!--&lt;!&ndash;			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">&ndash;&gt;-->
+<!--&lt;!&ndash;				Home&ndash;&gt;-->
+<!--&lt;!&ndash;				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;			</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;			<span class="stext-109 cl4">&ndash;&gt;-->
+<!--&lt;!&ndash;				Shoping Cart&ndash;&gt;-->
+<!--&lt;!&ndash;			</span>&ndash;&gt;-->
+<!--		</div>-->
+<!--	</div>-->
+
+
+
+
+ <div class="container h-100 d-flex align-items-center justify-content-center">
+<!--    <div class="row align-items-center">-->
+<!--        <div class="col-6 mx-auto">-->
+            <div class="card">
                  <div class="card-body">
-                    <div class="form-group"><h5>Total: NGN{{ cart.get_total_cost }}</h5></div>
+                    <div class="col-md-auto col-12">
+                        <div class="form-group">
+                            <h5>Total: NGN{{ cart.get_total_cost }}</h5>
+                        </div>
+                    </div>
                     <script src="https://checkout.flutterwave.com/v3.js"></script>
 
                     <form action="." method="POST" id="paymentForm">
+                        <div class="row align-items-center-g3">
                         {% csrf_token %}
-
-                            <div class="form-group">
-                                {% render_field payment_form.full_name class="form-control" placeholder="Full Name" type="text" id="full_name" %}
+                            <div class="col-md-auto col-12">
+                                <div class="form-group">
+                                    {% render_field payment_form.full_name class="form-control" placeholder="Full Name" type="text" id="full_name" %}
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                            {% render_field payment_form.email type="text" class="form-control" placeholder="email" id="email-address" %}
+                            <div class="col-md-auto col-12">
+                                <div class="form-group">
+                                {% render_field payment_form.email type="text" class="form-control" placeholder="email" id="email-address" %}
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                            {% render_field payment_form.phone type="text" class="form-control" placeholder="phone" id="phone"%}
+                            <div class="col-md-auto col-12">
+                                <div class="form-group">
+                                {% render_field payment_form.phone type="text" class="form-control" placeholder="phone" id="phone"%}
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                            {% render_field payment_form.address type="text" class="form-control" placeholder="address" %}
+                            <div class="col-md-auto col-12">
+                                <div class="form-group">
+                                {% render_field payment_form.address type="text" class="form-control" placeholder="address" %}
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                            {% render_field payment_form.amount type="tel" class="form-control"  id="amount" placeholder="enter total" %}
+                            <div class="col-md-auto col-12">
+                                <div class="form-group">
+                                {% render_field payment_form.amount type="tel" class="form-control"  id="amount" placeholder="enter total" %}
+                                </div>
                             </div>
-                            <button value="submit" class="btn btn-primary" type="submit" onclick="makePayment()">Pay</button>
+
+                            <div class="col-md-auto col-12">
+                                <button value="submit" class="btn btn-primary" type="submit" onclick="makePayment()">Pay</button>
+                            </div>
+                        </div>
                     </form>
                  </div>
-            </div>
-        </div>
+<!--            </div>-->
+<!--        </div>-->
     </div>
  </div>
-
+<script src="https://checkout.flutterwave.com/v3.js"></script>
 <script>
     function makePayment() {
       FlutterwaveCheckout({

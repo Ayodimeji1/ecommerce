@@ -4,6 +4,8 @@ from product.forms import AddToCartForm
 from product.models import Product, Category
 from cart.cart import Cart
 
+from django.db.models import Q
+
 
 # Create your views here.
 
@@ -22,7 +24,7 @@ def product(request, category_slug, product_slug):
 
             # if request.htmx:
             #     return render(request, 'product/partials/addcart.html')
-            return redirect('blank', category_slug=category_slug, product_slug=product_slug)
+            return redirect('product', category_slug=category_slug, product_slug=product_slug)
 
     else:
         form = AddToCartForm()
@@ -35,30 +37,8 @@ def product(request, category_slug, product_slug):
 
 
 
-def blank(request, category_slug, product_slug):
-
-    if request.method == 'POST':
-        form = AddToCartForm(request.POST)
-
-        if form.is_valid():
-            quantity = form.cleaned_data['quantity']
-
-
-            # if request.htmx:
-            #     return redirect('product', category_slug=category_slug, product_slug=product_slug)
-            return redirect('blank', category_slug=category_slug, product_slug=product_slug)
-
-    else:
-        form = AddToCartForm()
-
-    context = {
-        'form': form,
-    }
-    return render(request, 'product/blank.html', context)
-
-
 def shop(request):
-    # shop = Product.objects.all()
+    shop = Product.objects.all()
     women = Product.objects.filter(category=1)
     men = Product.objects.filter(category=2)
     bag = Product.objects.filter(category=3)
@@ -73,3 +53,10 @@ def category(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
 
     return render(request, 'product/category.html', {'category': category})
+
+
+def search(request):
+    query = request.GET.get('query', '')  # second is default parameter which is empty
+    products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+
+    return render(request, 'product/search.html', {'products': products, 'query': query})

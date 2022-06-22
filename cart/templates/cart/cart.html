@@ -46,19 +46,19 @@
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<a href="?change_quantity={{ item.id }}&quantity=-1"><i class="fs-16 zmdi zmdi-minus"></i></a>
+												<a href="?change_quantity={{ item.id }}&quantity=-1" style="color: black;"><i class="fs-16 zmdi zmdi-minus"></i></a>
 											</div>
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<a href="#">{{ item.quantity }}</a>
+												<a href="#" style="color: black;">{{ item.quantity }}</a>
 <!--											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="{{ item.quantity }}">-->
 											</div>
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<a href="?change_quantity={{ item.id }}&quantity=1"><i class="fs-16 zmdi zmdi-plus"></i></a>
+												<a href="?change_quantity={{ item.id }}&quantity=1" style="color: black;"><i class="fs-16 zmdi zmdi-plus"></i></a>
 											</div>
 										</div>
 									</td>
 									<td class="column-5">N{{ item.total_price }}</td>
-									<td><a href="?remove_from_cart={{ item.id }}"><i class="bi bi-trash"></i></a></td>
+									<td><a href="?remove_from_cart={{ item.id }}" style="color: black;"><i class="bi bi-trash"></i></a></td>
 								</tr>
 								{% endfor %}
 							</table>
