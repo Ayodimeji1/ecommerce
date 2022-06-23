@@ -10,11 +10,6 @@ DATABASES = {
 
 SECRET_KEY = 'django-insecure--jvr+ki2x=jaeem!$qdi7ovsumqxzixl)m)yy3ci2qgo93$9wi'
 
-FLUTTERWAVE_PUBLIC_KEY = 'FLWPUBK-e013ff06845fd0620d94a098b47bd1cc-X'
-FLUTTERWAVE_SECRET_KEY = 'FLWSECK-ef5816f1c26217ea095976395b9339cc-X'
-
-# PAYSTACK_SECRET_KEY = 'sk_test_05e65d231a09f6b2d86495fa3e526d807287ccf8'
-# PAYSTACK_PUBLIC_KEY = 'pk_test_abf9ebd652514f64bfb004be60e673c92224aa56'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
