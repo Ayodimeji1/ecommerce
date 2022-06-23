@@ -6,6 +6,10 @@ from decouple import config
 
 SECRET_KEY = config('SECRET_KEY')
 
+FLUTTERWAVE_PUBLIC_KEY = config('FLUTTERWAVE_PUBLIC_KEY')
+
+FLUTTERWAVE_SECRET_KEY = config('FLUTTERWAVE_SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
