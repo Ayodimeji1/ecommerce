@@ -34,7 +34,7 @@
                     </div>
                     <script src="https://checkout.flutterwave.com/v3.js"></script>
 
-                    <form action="." method="POST" id="paymentForm" content='text/html; charset=UTF-8' accept-charset="UTF-8">
+                    <form action="." method="POST" id="paymentForm" enctype="multipart/form-data" content='text/html' charset='UTF-8' accept-charset="UTF-8">
                         <div class="row align-items-center-g3">
                         {% csrf_token %}
                             <div class="col-md-auto col-12">
