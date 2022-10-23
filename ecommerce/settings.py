@@ -89,9 +89,14 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 load_dotenv(find_dotenv())
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default="postgres://postgres:$$ayodimeji22@localhost:5432/ecommerce", conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': '',
+    }
 }
 
 SESSION_COOKIE_AGE = 86400
