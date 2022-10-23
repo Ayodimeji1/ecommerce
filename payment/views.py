@@ -3,7 +3,6 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
 from cart.cart import Cart
-from ecommerce.settings import dev
 from . import forms
 from .forms import CheckoutForm
 
