@@ -91,11 +91,11 @@ load_dotenv(find_dotenv())
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': '',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': '8ruJlPG1U3cWdE3oMKdv',
+        'HOST': 'containers-us-west-106.railway.app',
+        'PORT': '6830',
     }
 }
 
