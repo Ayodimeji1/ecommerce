@@ -1,7 +1,3 @@
-# ecommerce
-This project is an update on a previous project. This will have a better looking and responsive frontend
-
-
 <h1 align="center" id="title">ecommerce</h1>
 
 <p id="description">A simple ecommerce store built with Django. Customers can view product add to cart and buy with having to register/sign in. Store owner/admin can add and delete products with prices.</p>
@@ -10,9 +6,6 @@ This project is an update on a previous project. This will have a better looking
 
 [https://ecommerce-production-5f26.up.railway.app/](https://ecommerce-production-5f26.up.railway.app/)
 
-<h2>Project Screenshots:</h2>
-
-<img src="" alt="project-screenshot" width="400" height="400/">
 
 <h2>🛠️ Installation Steps:</h2>
 
