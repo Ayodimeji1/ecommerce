@@ -31,7 +31,7 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['https://ecommerce-production-5f26.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS')
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-production-5f26.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
