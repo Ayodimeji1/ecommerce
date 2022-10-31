@@ -1,0 +1,45 @@
+{% extends 'shop/base.html' %}
+<!--{% load crispy_forms_tags %}-->
+
+{% block title %} Confirm payment {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex row justify-content-center align-items-center py-md-5 py-3" style="min-height:90vh;font-family:poppins;margin-top:3rem;color:#333;">
+        <div class="col-sm-4 col-sm-offset-4 ">
+            <h4>Pay:N{{ payment.amount }}</h4>
+            <br>
+            <script src="https://js.paystack.co/v1/inline.js"></script>
+            <button class="btn btn-primary btn-success" onclick="payWithPayStack()" id="django-paystack-button" type="button">
+                make payment
+            </button>
+
+        </div>
+    </div>
+</div>
+<script>
+    function payWithPayStack(){
+        let currency = "NGN";
+        let plan = "";
+        let ref = "{{ payment.ref }}";
+        let obj = {
+            key: "{{ paystack_public_key }}",
+            email: "{{ payment.email }}",
+            amount: "{{ payment.amount_value }}",
+            ref : ref,
+            callback: function(response){
+                windows.location.href = "{% url 'verify_payment' payment.ref %}";
+            }
+        }
+        if (Boolean(currency)){
+            obj.currency = currency.toUpperCase()
+        }
+        if (Boolean(plan)){
+            obj.plan = plan;
+        }
+        var handler = PaystackPop.setup(obj);
+        handler.openIframe();
+    }
+</script>
+
+{% endblock %}

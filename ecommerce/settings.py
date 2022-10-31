@@ -29,8 +29,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOST')
 
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS')
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,12 +45,14 @@ INSTALLED_APPS = [
     'imagekit',
     'django_extensions',
     'storages',
-    'widget_tweaks',
+    'crispy_forms',
     'shop',
     'product',
     'cart',
     'payment',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,20 +91,25 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 load_dotenv(find_dotenv())
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'ENqJZKsr1OaNPuvdO8wV',
-        'HOST': 'containers-us-west-100.railway.app',
-        'PORT': '5950',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
 SESSION_COOKIE_AGE = 86400
 
 CART_SESSION_ID = 'cart'
+
+PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY')
+PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY')
+
 
 # SESSION_COOKIE_HTTPONLY = True
 

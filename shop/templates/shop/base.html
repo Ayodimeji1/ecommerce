@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 	<!-- CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
@@ -14,6 +15,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 	<script src="https://unpkg.com/htmx.org@1.7.0"></script>
+
+	<script src="https://js.paystack.co/v1/inline.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
@@ -91,21 +94,6 @@
 							<li>
 								<a href="{% url 'shop' %}">Shop</a>
 							</li>
-<!--							<li class="label1" data-label1="hot">-->
-<!--								<a href="shoping-cart.html">Features</a>-->
-<!--							</li>-->
-
-<!--							<li>-->
-<!--								<a href="blog.html">Blog</a>-->
-<!--							</li>-->
-
-<!--							<li>-->
-<!--								<a href="about.html">About</a>-->
-<!--							</li>-->
-
-<!--							<li>-->
-<!--								<a href="contact.html">Contact</a>-->
-<!--							</li>-->
 						</ul>
 					</div>
 
@@ -181,61 +169,6 @@
 			</div>
 		</div>
 	</header>
-
-	<!-- Cart -->
-<!--	<div class="wrap-header-cart js-panel-cart">-->
-<!--		<div class="s-full js-hide-cart"></div>-->
-
-<!--		<div class="header-cart flex-col-l p-l-65 p-r-25">-->
-<!--			<div class="header-cart-title flex-w flex-sb-m p-b-8">-->
-<!--				<span class="mtext-103 cl2">-->
-<!--					Your Cart-->
-<!--				</span>-->
-
-<!--				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">-->
-<!--					<i class="zmdi zmdi-close"></i>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--			{% for item in cart %}-->
-<!--			<div class="header-cart-content flex-w js-pscroll">-->
-<!--				<ul class="header-cart-wrapitem w-full">-->
-<!--					<li class="header-cart-item flex-w flex-t m-b-12">-->
-<!--						<div class="header-cart-item-img">-->
-<!--							<img src="{{ item.product.image.url }}" alt="IMG">-->
-<!--						</div>-->
-
-<!--						<div class="header-cart-item-txt p-t-8">-->
-<!--							<a href="{% url 'product' item.product.category.slug item.product.slug %}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">-->
-<!--								{{ item.product.name }}-->
-<!--							</a>-->
-
-<!--							<span class="header-cart-item-info">-->
-<!--								{{ item.quantity }} x {{ item.product.price }}-->
-<!--							</span>-->
-<!--						</div>-->
-<!--					</li>-->
-<!--				</ul>-->
-
-<!--				<div class="w-full">-->
-<!--					<div class="header-cart-total w-full p-tb-40">-->
-<!--						Total: N{{ cart.get_total_cost }}-->
-<!--					</div>-->
-
-<!--					<div class="header-cart-buttons flex-w w-full">-->
-<!--						<a href="{% url 'cart' %}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">-->
-<!--							View Cart-->
-<!--						</a>-->
-
-<!--						<a href="{% url 'checkout' %}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">-->
-<!--							Check Out-->
-<!--						</a>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--			{% endfor %}-->
-<!--		</div>-->
-
-<!--	</div>-->
 
 	{% block content %}
 
@@ -476,14 +409,8 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="{% static 'js/main.js' %}"></script>
-
-	<script src="https://checkout.flutterwave.com/v3.js"></script>
-
+	<script src="https://js.paystack.co/v1/inline.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
-
 {% endblock scripts %}
-
-
 </body>
 </html>

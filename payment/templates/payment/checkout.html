@@ -1,108 +1,26 @@
 {% extends 'shop/base.html' %}
-
-{% load widget_tweaks %}
+{% load crispy_forms_tags %}
 
 {% block title %} Checkout | {% endblock %}
 
 {% block content %}
-<!--&lt;!&ndash; breadcrumb &ndash;&gt;-->
-<!--	<div class="container">-->
-<!--		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">-->
-<!--&lt;!&ndash;			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">&ndash;&gt;-->
-<!--&lt;!&ndash;				Home&ndash;&gt;-->
-<!--&lt;!&ndash;				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;			</a>&ndash;&gt;-->
-
-<!--&lt;!&ndash;			<span class="stext-109 cl4">&ndash;&gt;-->
-<!--&lt;!&ndash;				Shoping Cart&ndash;&gt;-->
-<!--&lt;!&ndash;			</span>&ndash;&gt;-->
-<!--		</div>-->
-<!--	</div>-->
-
-
-
-
- <div class="container h-100 d-flex align-items-center justify-content-center">
-<!--    <div class="row align-items-center">-->
-<!--        <div class="col-6 mx-auto">-->
-            <div class="card">
-                 <div class="card-body">
-                    <div class="col-md-auto col-12">
-                        <div class="form-group">
-                            <h5>Total: NGN{{ cart.get_total_cost }}</h5>
-                        </div>
-                    </div>
-                    <script src="https://checkout.flutterwave.com/v3.js"></script>
-
-                    <form action="." method="POST" id="paymentForm" enctype="multipart/form-data" content='text/html' charset='UTF-8' accept-charset="UTF-8">
-                        <div class="row align-items-center-g3">
-                        {% csrf_token %}
-                            <div class="col-md-auto col-12">
-                                <div class="form-group">
-                                    {% render_field payment_form.full_name class="form-control" placeholder="Full Name" type="text" id="full_name" %}
-                                </div>
-                            </div>
-
-                            <div class="col-md-auto col-12">
-                                <div class="form-group">
-                                {% render_field payment_form.email type="text" class="form-control" placeholder="email" id="email-address" %}
-                                </div>
-                            </div>
-
-                            <div class="col-md-auto col-12">
-                                <div class="form-group">
-                                {% render_field payment_form.phone type="text" class="form-control" placeholder="phone" id="phone"%}
-                                </div>
-                            </div>
-
-                            <div class="col-md-auto col-12">
-                                <div class="form-group">
-                                {% render_field payment_form.address type="text" class="form-control" placeholder="address" %}
-                                </div>
-                            </div>
-
-                            <div class="col-md-auto col-12">
-                                <div class="form-group">
-                                {% render_field payment_form.amount type="tel" class="form-control"  id="amount" placeholder="enter total" %}
-                                </div>
-                            </div>
-
-                            <div class="col-md-auto col-12">
-                                <button value="submit" class="btn btn-primary" type="submit" onclick="makePayment()">Pay</button>
-                            </div>
-                        </div>
-                    </form>
-                 </div>
-<!--            </div>-->
-<!--        </div>-->
+<div class="container">
+    <div class="d-flex row justify-content-center align-items-center py-md-5 py-3" style="min-height:90vh;font-family:poppins;margin-top:3rem;color:#333;">
+        <div class="col-sm-4 col-sm-offset-4 ">
+            <form action="." method="post">
+                <h4>Checkout</h4>
+                <br>
+                <h5>Total: NGN{{ cart.get_total_cost }}</h5>
+                <hr>
+                {% csrf_token %}
+                {{ payment_form|crispy }}
+                <input type="submit" value="submit" class="btn btn-primary">
+            </form>
+        </div>
     </div>
- </div>
-<script src="https://checkout.flutterwave.com/v3.js"></script>
-<script>
-    function makePayment() {
-      FlutterwaveCheckout({
-        public_key: "FLWPUBK_TEST-SANDBOXDEMOKEY-X",
-        tx_ref: "txref",
-        amount: document.getElementById("amount").value,
-        currency: "NGN",
-        payment_options: "card, ussd",
-        redirect_url: "http://127.0.0.1:8000",
-        meta: {
-          consumer_id: 23,
-          consumer_mac: "92a3-912ba-1192a",
-        },
-        customer: {
-          email: document.getElementById("email-address").value,
-          phone_number: document.getElementById("phone").value,
-          name: document.getElementById("full_name").value,
-        },
-        customizations: {
-          title: "The 1Store",
-          description: "Payment for {{ item.product.name }}",
-          logo: "media/images/icons/1store1.png",
-        },
-      });
-    }
-</script>
+</div>
+
+<!--                            <input type="submit" class="btn btn-primary" name="" value="Click to SignUp"-->
+<!--                                   onclick="return confirm('Thank you redirecting you to login Page.');">-->
 
 {% endblock %}
